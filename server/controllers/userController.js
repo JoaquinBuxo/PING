@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 exports.getAllUsers = async (req, res) => {
   try {
-    const data = await User.find();
+    const data = await User.find({});
     res.send(data);
     res.status(200);
   } catch (error) {
@@ -13,8 +13,8 @@ exports.getAllUsers = async (req, res) => {
 exports.getUser = async (req, res) => {
   try {
     const data = await User.findOne({ email: req.body.email.user.email });
-    res.send(data);
     res.status(200);
+    res.send(data);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -22,12 +22,10 @@ exports.getUser = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    console.log('test');
-    console.log(req.body);
     const data = new User(req.body);
     await data.save();
-    res.send(data);
     res.status(201);
+    res.send(data);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -41,9 +39,8 @@ exports.updateUser = async (req, res) => {
       { username: username, role: role },
       { new: true }
     );
-    res.send(data);
-    console.log(data);
     res.status(201);
+    res.send(data);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -66,8 +63,8 @@ exports.sendRequest = async (req, res) => {
       },
       { new: true }
     );
-    res.send(data);
     res.status(201);
+    res.send(data);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -81,8 +78,8 @@ exports.sendReview = async (req, res) => {
       { 'requests.$.review': { helper, rating, review, time } },
       { new: true }
     );
-    res.send(data);
     res.status(201);
+    res.send(data);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -99,8 +96,8 @@ exports.updateImages = async (req, res) => {
       },
       { arrayFilters: [{ 'elem.images': { $exists: true } }], new: true }
     );
-    res.send(user);
     res.status(201);
+    res.send(user);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

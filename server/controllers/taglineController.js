@@ -12,7 +12,6 @@ exports.getTaglines = async (req, res) => {
 
 exports.postTagline = async (req, res) => {
   try {
-    console.log(req.body.tagline);
     const data = new Tagline(req.body);
     await data.save();
     res.status(201);
