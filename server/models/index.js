@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
+const URL = 'mongodb://127.0.0.1:27017/PING';
 
 try {
-  mongoose.connect(
-    "mongodb+srv://P1ro:oDOaxYB8Du3Y9GJx@piro.f8cbqeh.mongodb.net/ping?retryWrites=true&w=majority",  
-  console.log('💗 Connected to database 💗')
-  );
+  mongoose.connect(URL);
+  console.log('💗 Connected to database 💗');
 } catch (error) {
   console.error(error);
 }
